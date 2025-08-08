@@ -17,6 +17,12 @@ export class AppComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
+  sendQuickMessage(message: string) {
+    if (message === 'Contact us') {
+      window.open('mailto:Business@vivytech.com', '_blank');
+    }
+  }
+
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
     const target = event.target as HTMLElement;
