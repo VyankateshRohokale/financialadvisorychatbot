@@ -1,15 +1,16 @@
-<div class="landing-container">
-  <header>
-    <h1>Financial Advisory Chatbot</h1>
-    <p>Your AI-powered assistant for smarter money decisions.</p>
-  </header>
+<header class="app-header">
+  <div class="logo-container">
+    <div class="logo">VIVY TECH</div>
+    <div class="dropdown">
+      <button class="dropdown-btn" (click)="toggleDropdown()">▼</button>
+      <div class="dropdown-content" [class.show]="isDropdownOpen">
+        <a href="https://vivytech.com/home" target="_blank">Website</a>
+        <a href="https://vivytech.com/projects" target="_blank">Projects</a>
+      </div>
+    </div>
+  </div>
+</header>
 
-  <main>
-    <button class="start-btn">💬 Start Chat</button>
-    <button class="docs-btn">📄 Learn More</button>
-  </main>
-
-  <footer>
-    <p>© {{ currentYear }} Financial Advisory Chatbot</p>
-  </footer>
-</div>
+<main class="main-content">
+  <app-chat></app-chat>
+</main>

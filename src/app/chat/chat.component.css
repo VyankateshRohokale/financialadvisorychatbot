@@ -1,0 +1,154 @@
+.chat-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #212121;
+}
+
+h2 {
+  display: none;
+}
+
+.chat-window {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 768px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 9rem 0;
+}
+
+.user-message, .bot-message {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.user-message {
+  background-color: #2f2f2f;
+}
+
+.bot-message {
+  background-color: #212121;
+}
+
+.message-bubble {
+  padding: 1rem;
+  max-width: 100%;
+  word-wrap: break-word;
+  line-height: 1.6;
+}
+
+.user-message .message-bubble {
+  background-color: transparent;
+  color: #ececf1;
+}
+
+.bot-message .message-bubble {
+  background-color: transparent;
+  color: #ececf1;
+}
+
+.chat-title {
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: -6.3rem;
+}
+
+.chat-title h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.quick-responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.quick-responses button {
+  background-color: #212121;
+  color: #888888 !important;
+  border: 1px solid #666666;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  max-width: 100%;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.quick-responses button:hover {
+  color: #d1d5db;
+}
+
+.terms-text {
+  text-align: center;
+  margin-top: 4.5rem;
+}
+
+.terms-text p {
+  font-size: 0.8rem;
+  color: #888888;
+  margin: 0;
+}
+
+.input-area {
+  padding: 1rem 0 2rem 0;
+  margin-top: 1rem;
+}
+
+.input-area > div {
+  display: flex;
+  background-color: #2f2f2f;
+  border-radius: 25px;
+  padding: 0.75rem;
+  align-items: center;
+}
+
+.input-area input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  color: #ececf1;
+  font-size: 1rem;
+  outline: none;
+  padding: 0.5rem;
+}
+
+.input-area input::placeholder {
+  color: #888888;
+}
+
+.input-area button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 0.7rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  font-weight: 600;
+  font-size: 1.3rem;
+  -webkit-text-stroke: 1px black;
+}
+
+.input-area button:disabled {
+  background-color: #2f2f2f;
+  cursor: not-allowed;
+}
+
