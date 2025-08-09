@@ -6,10 +6,10 @@
         <div class="message-bubble">{{ message.text }}</div>
       </div>
     </div>
-    <div class="chat-title">
+    <div class="chat-title" [class.hidden]="messages.length > 0">
       <h1>Clau AI</h1>
     </div>
-    <div class="input-area">
+    <div class="input-area" [class.bottom]="messages.length > 0">
       <div>
         <input
           type="text"
@@ -21,7 +21,7 @@
         <button (click)="sendMessage()" [disabled]="isLoading">^</button>
       </div>
     </div>
-    <div class="quick-responses">
+    <div class="quick-responses" [class.hidden]="messages.length > 0">
       <button (click)="sendQuickMessage('What is APR')">What is APR</button>
       <button (click)="sendQuickMessage('explain Compound interest')">explain Compound interest</button>
       <button (click)="sendQuickMessage('How can I save more money each month?')">How can I save more money each month?</button>

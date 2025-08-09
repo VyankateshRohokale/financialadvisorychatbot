@@ -29,14 +29,14 @@ export class ChatComponent implements OnInit {
     this.userInput = '';
     this.isLoading = true;
 
-    // Simulate an API call with a delay
+    // Wait for transition (1s) + additional delay for bot response
     setTimeout(() => {
       this.messages.push({
         text: 'This is a sample response from the chatbot.',
         sender: 'bot'
       });
       this.isLoading = false;
-    }, 1500);
+    }, 2500);
   }
 
   sendQuickMessage(message: string): void {
