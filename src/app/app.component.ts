@@ -17,12 +17,8 @@ export class AppComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  // This method is now unused, as quick message logic is handled in ChatComponent
-  sendQuickMessage(message: string) {
-    if (message === 'Contact us') {
-      window.open('mailto:Business@vivytech.com', '_blank');
-    }
-  }
+  // This method is no longer needed as the contact button is a direct link
+  sendQuickMessage(message: string) {}
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {

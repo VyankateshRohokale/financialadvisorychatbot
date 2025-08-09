@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-const BOT_RESPONSE_DELAY = 1500; // Time in ms for the bot to "think"
-const UI_TRANSITION_DURATION = 1000; // Matches the CSS transition duration of 1s
-
 @Component({
   selector: 'app-chat',
   standalone: true,
@@ -16,6 +13,7 @@ export class ChatComponent implements OnInit {
   userInput: string = '';
   messages: { text: string, sender: 'user' | 'bot' }[] = [];
   isLoading: boolean = false;
+  public isInitialLoad: boolean = true;
 
   constructor() { }
 
@@ -30,18 +28,24 @@ export class ChatComponent implements OnInit {
     this.messages.push({ text: userMessage, sender: 'user' });
     this.userInput = '';
     this.isLoading = true;
+    this.isInitialLoad = false;
 
-    // First, wait for the UI transition to complete
+    // Scroll to top when messages become visible
     setTimeout(() => {
-      // Then, simulate the bot's response delay
-      setTimeout(() => {
-        this.messages.push({
-          text: 'This is a sample response from the chatbot.',
-          sender: 'bot'
-        });
-        this.isLoading = false;
-      }, BOT_RESPONSE_DELAY);
-    }, UI_TRANSITION_DURATION);
+      const messagesContainer = document.querySelector('.messages');
+      if (messagesContainer) {
+        messagesContainer.scrollTop = 0;
+      }
+    }, 100);
+
+    // Simulate a delay for the bot's response.
+    setTimeout(() => {
+      this.messages.push({
+        text: 'This is a sample response from the chatbot.',
+        sender: 'bot'
+      });
+      this.isLoading = false;
+    }, 2500);
   }
 
   sendQuickMessage(message: string): void {

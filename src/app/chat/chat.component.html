@@ -1,15 +1,40 @@
 <div class="chat-wrapper">
   <h2>Financial Insights</h2>
   <div class="chat-window">
-    <div class="messages">
+    <div class="initial-screen-wrapper" [class.hidden]="!isInitialLoad">
+      <div class="chat-title">
+        <h1>Clau AI</h1>
+      </div>
+      <div class="input-area-initial">
+        <div>
+          <input
+            type="text"
+            [(ngModel)]="userInput"
+            (keyup.enter)="sendMessage()"
+            placeholder="Need Financial Assistance?"
+            [disabled]="isLoading"
+          />
+          <button (click)="sendMessage()" [disabled]="isLoading">^</button>
+        </div>
+      </div>
+      <div class="quick-responses">
+        <button (click)="sendQuickMessage('What is APR')">What is APR</button>
+        <button (click)="sendQuickMessage('explain Compound interest')">explain Compound interest</button>
+        <button (click)="sendQuickMessage('How can I save more money each month?')">How can I save more money each month?</button>
+        <div style="flex-basis: 100%; height: 0;"></div>
+        <button (click)="sendQuickMessage('budget plan for a college student')">budget plan for a college student</button>
+      </div>
+      <div class="terms-text">
+        <p>By using Clau AI, you agree to our Terms of Service and acknowledge our Privacy Policy.</p>
+      </div>
+    </div>
+    
+    <div class="messages" [class.show]="!isInitialLoad">
       <div *ngFor="let message of messages" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
         <div class="message-bubble">{{ message.text }}</div>
       </div>
     </div>
-    <div class="chat-title" [class.hidden]="messages.length > 0">
-      <h1>Clau AI</h1>
-    </div>
-    <div class="input-area" [class.bottom]="messages.length > 0">
+    <div class="input-area" [class.show]="!isInitialLoad">
       <div>
         <input
           type="text"
@@ -21,14 +46,5 @@
         <button (click)="sendMessage()" [disabled]="isLoading">^</button>
       </div>
     </div>
-    <div class="quick-responses" [class.hidden]="messages.length > 0">
-      <button (click)="sendQuickMessage('What is APR')">What is APR</button>
-      <button (click)="sendQuickMessage('explain Compound interest')">explain Compound interest</button>
-      <button (click)="sendQuickMessage('How can I save more money each month?')">How can I save more money each month?</button>
-      <button (click)="sendQuickMessage('budget plan for a college student')">budget plan for a college student</button>
-    </div>
-  </div>
-  <div class="terms-text">
-    <p>By using Clau AI, you agree to our Terms of Service and acknowledge our Privacy Policy.</p>
   </div>
 </div>
