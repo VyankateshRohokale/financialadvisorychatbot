@@ -49,6 +49,12 @@ h2 {
   left: 0;
   right: 0;
   bottom: 100px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.messages::-webkit-scrollbar {
+  display: none;
 }
 
 .messages.show {
