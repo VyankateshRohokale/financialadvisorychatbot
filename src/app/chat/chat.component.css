@@ -28,30 +28,32 @@ h2 {
 .user-message, .bot-message {
   width: 100%;
   margin-bottom: 1.5rem;
+  display: flex;
 }
 
 .user-message {
-  background-color: #2f2f2f;
+  justify-content: flex-end;
 }
 
 .bot-message {
-  background-color: #212121;
+  justify-content: flex-start;
 }
 
 .message-bubble {
   padding: 1rem;
-  max-width: 100%;
+  max-width: 70%;
   word-wrap: break-word;
   line-height: 1.6;
+  border-radius: 20px;
 }
 
 .user-message .message-bubble {
-  background-color: transparent;
+  background-color: #2f2f2f;
   color: #ececf1;
 }
 
 .bot-message .message-bubble {
-  background-color: transparent;
+  background-color: #404040;
   color: #ececf1;
 }
 
@@ -121,12 +123,13 @@ h2 {
 
 .input-area {
   padding: 1rem 0 2rem 0;
-  margin-top: 1rem;
-  transition: margin-top 1s ease;
+  /* Removed margin-top */
+  transform: translateY(0); /* Initial position */
+  transition: transform 1s ease; /* Animate the transform property */
 }
 
 .input-area.bottom {
-  margin-top: 13.5rem;
+  transform: translateY(13.5rem); /* Move down by this amount */
 }
 
 .input-area > div {
@@ -170,4 +173,3 @@ h2 {
   background-color: #2f2f2f;
   cursor: not-allowed;
 }
-

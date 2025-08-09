@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+const BOT_RESPONSE_DELAY = 1500; // Time in ms for the bot to "think"
+const UI_TRANSITION_DURATION = 1000; // Matches the CSS transition duration of 1s
+
 @Component({
   selector: 'app-chat',
   standalone: true,
@@ -16,8 +19,7 @@ export class ChatComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   sendMessage(): void {
     if (this.userInput.trim() === '') {
@@ -29,14 +31,17 @@ export class ChatComponent implements OnInit {
     this.userInput = '';
     this.isLoading = true;
 
-    // Wait for transition (1s) + additional delay for bot response
+    // First, wait for the UI transition to complete
     setTimeout(() => {
-      this.messages.push({
-        text: 'This is a sample response from the chatbot.',
-        sender: 'bot'
-      });
-      this.isLoading = false;
-    }, 2500);
+      // Then, simulate the bot's response delay
+      setTimeout(() => {
+        this.messages.push({
+          text: 'This is a sample response from the chatbot.',
+          sender: 'bot'
+        });
+        this.isLoading = false;
+      }, BOT_RESPONSE_DELAY);
+    }, UI_TRANSITION_DURATION);
   }
 
   sendQuickMessage(message: string): void {

@@ -17,6 +17,7 @@ export class AppComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
+  // This method is now unused, as quick message logic is handled in ChatComponent
   sendQuickMessage(message: string) {
     if (message === 'Contact us') {
       window.open('mailto:Business@vivytech.com', '_blank');
