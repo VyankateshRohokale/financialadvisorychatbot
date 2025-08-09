@@ -193,8 +193,9 @@ h2 {
   border-radius: 25px;
   padding: 0.75rem;
   align-items: center;
-  width: 100%;
-  margin: 0;
+  width: 120%;
+  max-width: 600px;
+  margin: 0 0 0 -10%;
 }
 
 .input-area input,
@@ -213,26 +214,47 @@ h2 {
   color: #888888;
 }
 
-.input-area button,
-.input-area-initial button {
-  background-color: white;
-  color: black;
+.send-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
-  padding: 0.7rem;
   border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   margin-left: 0.7rem;
-  min-width: 2.5rem;
-  height: 2.5rem;
-  font-weight: 600;
-  font-size: 1.3rem;
-  -webkit-text-stroke: 1px black;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
-.input-area button:disabled,
-.input-area-initial button:disabled {
-  background-color: #2f2f2f;
+.send-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.send-button:active {
+  transform: translateY(0);
+}
+
+.send-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: white;
+  transform: rotate(-90deg);
+}
+
+.send-button:disabled {
+  background: #cccccc;
   cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+.send-button:disabled .send-icon {
+  color: #666666;
 }
 
 /* These classes are now handled by the .initial-screen-wrapper */

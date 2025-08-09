@@ -14,7 +14,11 @@
             placeholder="Need Financial Assistance?"
             [disabled]="isLoading"
           />
-          <button (click)="sendMessage()" [disabled]="isLoading">^</button>
+          <button class="send-button" (click)="sendMessage()" [disabled]="isLoading">
+            <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L22 12L12 22L10.59 20.59L18.17 13H2V11H18.17L10.59 3.41L12 2Z"/>
+            </svg>
+          </button>
         </div>
       </div>
       <div class="quick-responses">
@@ -43,7 +47,11 @@
           placeholder="Need Financial Assistance?"
           [disabled]="isLoading"
         />
-        <button (click)="sendMessage()" [disabled]="isLoading">^</button>
+        <button class="send-button" (click)="sendMessage()" [disabled]="isLoading">
+          <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L22 12L12 22L10.59 20.59L18.17 13H2V11H18.17L10.59 3.41L12 2Z"/>
+          </svg>
+        </button>
       </div>
     </div>
   </div>
