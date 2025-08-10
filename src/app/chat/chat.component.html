@@ -7,6 +7,15 @@
       </div>
       <div class="input-area-initial">
         <div>
+          <!-- <button
+            class="file-button"
+            (click)="triggerFileInput()"
+            [disabled]="isLoading"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+            </svg>
+          </button> -->
           <input
             type="text"
             [(ngModel)]="userInput"
@@ -14,35 +23,76 @@
             placeholder="Need Financial Assistance?"
             [disabled]="isLoading"
           />
-          <button class="send-button" (click)="sendMessage()" [disabled]="isLoading">
+          <button
+            class="send-button"
+            (click)="sendMessage()"
+            [disabled]="isLoading"
+          >
             <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L22 12L12 22L10.59 20.59L18.17 13H2V11H18.17L10.59 3.41L12 2Z"/>
+              <path
+                d="M12 2L22 12L12 22L10.59 20.59L18.17 13H2V11H18.17L10.59 3.41L12 2Z"
+              />
             </svg>
           </button>
         </div>
       </div>
       <div class="quick-responses">
         <button (click)="sendQuickMessage('What is APR')">What is APR</button>
-        <button (click)="sendQuickMessage('explain Compound interest')">explain Compound interest</button>
-        <button (click)="sendQuickMessage('How can I save more money each month?')">How can I save more money each month?</button>
-        <div style="flex-basis: 100%; height: 0;"></div>
-        <button (click)="sendQuickMessage('budget plan for a college student')">budget plan for a college student</button>
+        <button (click)="sendQuickMessage('Explain Compound interest')">
+          Explain Compound interest
+        </button>
+        <button
+          (click)="sendQuickMessage('How can I save more money each month?')"
+        >
+          How can I save more money each month?
+        </button>
+        <div style="flex-basis: 100%; height: 0"></div>
+        <button (click)="sendQuickMessage('Budget plan for a college student')">
+          Budget plan for a college student
+        </button>
       </div>
       <div class="terms-text">
-        <p>By using Clau AI, you agree to our Terms of Service and acknowledge our Privacy Policy.</p>
+        <p>
+          By using Clau AI, you agree to our Terms of Service and acknowledge
+          our Privacy Policy.
+        </p>
       </div>
     </div>
-    
+
     <div class="messages" [class.show]="!isInitialLoad">
-      <div *ngFor="let message of messages" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
+      <div
+        *ngFor="let message of messages"
+        [ngClass]="{
+          'user-message': message.sender === 'user',
+          'bot-message': message.sender === 'bot'
+        }"
+      >
         <div class="message-bubble">
           <span *ngIf="message.sender === 'user'">{{ message.text }}</span>
-          <div *ngIf="message.sender === 'bot'" [innerHTML]="message.html"></div>
+          <div
+            *ngIf="message.sender === 'bot'"
+            [innerHTML]="message.html"
+          ></div>
         </div>
+      </div>
+      <div *ngIf="isLoading" class="loading-container">
+        <span class="thinking-text"
+          >Working<span class="dot">.</span><span class="dot">.</span
+          ><span class="dot">.</span></span
+        >
       </div>
     </div>
     <div class="input-area" [class.show]="!isInitialLoad">
       <div>
+        <!-- <button
+          class="file-button"
+          (click)="triggerFileInput()"
+          [disabled]="isLoading"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </svg>
+        </button> -->
         <input
           type="text"
           [(ngModel)]="userInput"
@@ -50,12 +100,26 @@
           placeholder="Need Financial Assistance?"
           [disabled]="isLoading"
         />
-        <button class="send-button" (click)="sendMessage()" [disabled]="isLoading">
+        <button
+          class="send-button"
+          (click)="sendMessage()"
+          [disabled]="isLoading"
+        >
           <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L22 12L12 22L10.59 20.59L18.17 13H2V11H18.17L10.59 3.41L12 2Z"/>
+            <path
+              d="M12 2L22 12L12 22L10.59 20.59L18.17 13H2V11H18.17L10.59 3.41L12 2Z"
+            />
           </svg>
         </button>
       </div>
     </div>
+
+    <!-- <input
+      type="file"
+      id="fileInput"
+      (change)="onFileSelected($event)"
+      accept="image/*,.pdf,.doc,.docx,.txt"
+      style="display: none"
+    /> -->
   </div>
 </div>

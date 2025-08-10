@@ -261,6 +261,45 @@ h2 {
   color: #666666;
 }
 
+.file-button {
+  background: transparent;
+  border: 1px solid #666666;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 0.7rem;
+  transition: all 0.3s ease;
+}
+
+.file-button:hover {
+  border-color: #888888;
+  background-color: #2a2a2a;
+}
+
+.file-button svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: #888888;
+}
+
+.file-button:hover svg {
+  color: #d1d5db;
+}
+
+.file-button:disabled {
+  border-color: #444444;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.file-button:disabled svg {
+  color: #444444;
+}
+
 .bot-message .message-bubble h1,
 .bot-message .message-bubble h2,
 .bot-message .message-bubble h3 {
@@ -334,4 +373,44 @@ h2 {
 .quick-responses.hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+}
+
+.thinking-text {
+  display: flex;
+  align-items: center;
+  color: #888888;
+  font-style: italic;
+}
+
+.dot {
+  animation: blink 1.4s infinite both;
+  font-weight: bold;
+  margin-left: 1px;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%, 20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
