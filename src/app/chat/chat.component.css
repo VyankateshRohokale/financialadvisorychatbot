@@ -160,13 +160,11 @@ h2 {
   margin: 0;
 }
 
-/* Initial input area in center */
 .input-area-initial {
   padding: 0;
   margin: 1rem 0;
 }
 
-/* Fixed input area at bottom (hidden initially) */
 .input-area {
   padding: 1rem;
   position: fixed;
@@ -263,7 +261,71 @@ h2 {
   color: #666666;
 }
 
-/* These classes are now handled by the .initial-screen-wrapper */
+.bot-message .message-bubble h1,
+.bot-message .message-bubble h2,
+.bot-message .message-bubble h3 {
+  color: #ffffff;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.bot-message .message-bubble h1 { font-size: 1.5rem; }
+.bot-message .message-bubble h2 { font-size: 1.3rem; }
+.bot-message .message-bubble h3 { font-size: 1.1rem; }
+
+.bot-message .message-bubble ul,
+.bot-message .message-bubble ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.bot-message .message-bubble li {
+  margin: 0.25rem 0;
+}
+
+.bot-message .message-bubble code {
+  background-color: #2a2a2a;
+  color: #f8f8f2;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+.bot-message .message-bubble pre {
+  background-color: #2a2a2a;
+  color: #f8f8f2;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+}
+
+.bot-message .message-bubble pre code {
+  background: none;
+  padding: 0;
+}
+
+.bot-message .message-bubble strong {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.bot-message .message-bubble em {
+  font-style: italic;
+}
+
+.bot-message .message-bubble p {
+  margin: 0.5rem 0;
+}
+
+.bot-message .message-bubble p:first-child {
+  margin-top: 0;
+}
+
+.bot-message .message-bubble p:last-child {
+  margin-bottom: 0;
+}
+
 .chat-title.hidden {
   opacity: 0;
   pointer-events: none;

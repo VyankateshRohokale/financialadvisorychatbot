@@ -35,7 +35,10 @@
     
     <div class="messages" [class.show]="!isInitialLoad">
       <div *ngFor="let message of messages" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
-        <div class="message-bubble">{{ message.text }}</div>
+        <div class="message-bubble">
+          <span *ngIf="message.sender === 'user'">{{ message.text }}</span>
+          <div *ngIf="message.sender === 'bot'" [innerHTML]="message.html"></div>
+        </div>
       </div>
     </div>
     <div class="input-area" [class.show]="!isInitialLoad">
