@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../../environments/environment';
@@ -12,11 +12,12 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css'],
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewChecked {
   userInput: string = '';
   messages: { text: string; html?: SafeHtml; sender: 'user' | 'bot' }[] = [];
   isLoading: boolean = false;
   public isInitialLoad: boolean = true;
+  private shouldScrollToBottom: boolean = false;
 
   backend_url = environment.BACKEND_URL || 'http://localhost:8000';
 
@@ -24,11 +25,30 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  ngAfterViewChecked(): void {
+    if (this.shouldScrollToBottom) {
+      this.scrollToBottom();
+      this.shouldScrollToBottom = false;
+    }
+  }
+
+  private scrollToBottom(): void {
+    try {
+      const messagesElement = document.querySelector('.messages');
+      if (messagesElement) {
+        messagesElement.scrollTop = messagesElement.scrollHeight;
+      }
+    } catch (error) {
+      console.error('Error scrolling to bottom:', error);
+    }
+  }
+
   async sendMessage(): Promise<void> {
     if (this.userInput.trim() === '') return;
 
     const userMessage = this.userInput;
     this.messages.push({ text: userMessage, sender: 'user' });
+    this.shouldScrollToBottom = true;
 
     this.userInput = '';
     this.isLoading = true;
@@ -61,12 +81,14 @@ export class ChatComponent implements OnInit {
         html: this.sanitizer.bypassSecurityTrustHtml(htmlContent),
         sender: 'bot',
       });
+      this.shouldScrollToBottom = true;
     } catch (error) {
       console.error('Error calling backend:', error);
       this.messages.push({
         text: 'Sorry, I encountered an error. Please try again.',
         sender: 'bot',
       });
+      this.shouldScrollToBottom = true;
     } finally {
       this.isLoading = false;
     }
