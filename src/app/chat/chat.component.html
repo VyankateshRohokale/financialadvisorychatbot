@@ -1,32 +1,25 @@
 <div class="chat-wrapper">
   <h2>Financial Insights</h2>
   <div class="chat-window">
+    <!-- Initial Screen -->
     <div class="initial-screen-wrapper" [class.hidden]="!isInitialLoad">
       <div class="chat-title">
         <h1>Clau AI</h1>
       </div>
       <div class="input-area-initial">
         <div>
-          <!-- <button
-            class="file-button"
-            (click)="triggerFileInput()"
-            [disabled]="isLoading"
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-            </svg>
-          </button> -->
           <input
             type="text"
             [(ngModel)]="userInput"
-            (keyup.enter)="sendMessage()"
+            (keydown)="onInputKeydown($event)"
             placeholder="Need Financial Assistance?"
             [disabled]="isLoading"
+            #initialInput
           />
           <button
             class="send-button"
             (click)="sendMessage()"
-            [disabled]="isLoading"
+            [disabled]="isLoading || userInput.trim() === ''"
           >
             <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -59,13 +52,20 @@
       </div>
     </div>
 
-    <div class="messages" [class.show]="!isInitialLoad">
+    <!-- Chat Messages -->
+    <div 
+      class="messages" 
+      [class.show]="!isInitialLoad"
+      (scroll)="onMessagesScroll()"
+      #messagesContainer
+    >
       <div
-        *ngFor="let message of messages"
+        *ngFor="let message of messages; let i = index"
         [ngClass]="{
           'user-message': message.sender === 'user',
           'bot-message': message.sender === 'bot'
         }"
+        [attr.data-message-index]="i"
       >
         <div class="message-bubble">
           <span *ngIf="message.sender === 'user'">{{ message.text }}</span>
@@ -75,6 +75,8 @@
           ></div>
         </div>
       </div>
+      
+      <!-- Loading indicator -->
       <div *ngIf="isLoading" class="loading-container">
         <span class="thinking-text"
           >Working<span class="dot">.</span><span class="dot">.</span
@@ -82,28 +84,22 @@
         >
       </div>
     </div>
+
+    <!-- Bottom Input Area -->
     <div class="input-area" [class.show]="!isInitialLoad">
       <div>
-        <!-- <button
-          class="file-button"
-          (click)="triggerFileInput()"
-          [disabled]="isLoading"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-          </svg>
-        </button> -->
         <input
           type="text"
           [(ngModel)]="userInput"
-          (keyup.enter)="sendMessage()"
+          (keydown)="onInputKeydown($event)"
           placeholder="Need Financial Assistance?"
           [disabled]="isLoading"
+          #messageInput
         />
         <button
           class="send-button"
           (click)="sendMessage()"
-          [disabled]="isLoading"
+          [disabled]="isLoading || userInput.trim() === ''"
         >
           <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
             <path
@@ -113,13 +109,5 @@
         </button>
       </div>
     </div>
-
-    <!-- <input
-      type="file"
-      id="fileInput"
-      (change)="onFileSelected($event)"
-      accept="image/*,.pdf,.doc,.docx,.txt"
-      style="display: none"
-    /> -->
   </div>
 </div>
