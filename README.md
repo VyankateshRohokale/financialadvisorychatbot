@@ -4,9 +4,10 @@ A modern, AI-powered financial advisory chatbot built with Angular 17 that provi
 
 ## 🚀 Features
 
-- **AI-Powered Advice**: Integrated with Google Gemini API for intelligent financial guidance
-- **Real-time Chat**: Smooth, responsive chat interface with markdown support
+- **AI-Powered Advice**: Integrated with Google Gemini 2.5 Flash API for intelligent financial guidance
+- **Real-time Chat**: Smooth, responsive chat interface with rich markdown support
 - **Professional Persona**: "Clau" - your dedicated financial advisor
+- **Rich Formatting**: Tables, headers, bullet points, and visual cards for better readability
 - **Quick Actions**: Pre-defined quick message buttons for common queries
 - **Auto-scroll**: Smart scrolling with user control
 - **Responsive Design**: Works seamlessly across devices
@@ -97,6 +98,16 @@ src/
 3. Receive AI-powered financial advice
 4. Use quick action buttons for common queries
 5. Scroll through chat history with auto-scroll features
+
+## 🧪 Testing
+
+```bash
+# Run unit tests
+ng test
+
+# Test with sample financial questions
+# See TEST_SUITE.md for comprehensive test cases
+```
 
 ## 📄 License
 
