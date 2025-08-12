@@ -105,6 +105,9 @@ src/
 # Run unit tests
 ng test
 
+# Run tests in headless mode (CI/CD)
+ng test --watch=false --browsers=ChromeHeadless
+
 # Test with sample financial questions
 # See TEST_SUITE.md for comprehensive test cases
 ```
@@ -112,3 +115,9 @@ ng test
 ## 📄 License
 
 This project is licensed under the MIT License.
+
+## 🚀 Live Demo
+
+**Frontend**: [https://financialadvisorychatbot.vercel.app/](https://financialadvisorychatbot.vercel.app/)
+**Backend API**: [https://clau-ai-backend.onrender.com](https://clau-ai-backend.onrender.com)
+**API Docs**: [https://clau-ai-backend.onrender.com/docs](https://clau-ai-backend.onrender.com/docs)
