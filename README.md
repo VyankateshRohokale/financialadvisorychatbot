@@ -1,27 +1,103 @@
-# FinancialAdvisoryChatbot
+# Clau - Financial Advisory Chatbot
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
+A modern, AI-powered financial advisory chatbot built with Angular 17 that provides personalized financial guidance and advice.
 
-## Development server
+## 🚀 Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **AI-Powered Advice**: Integrated with Google Gemini API for intelligent financial guidance
+- **Real-time Chat**: Smooth, responsive chat interface with markdown support
+- **Professional Persona**: "Clau" - your dedicated financial advisor
+- **Quick Actions**: Pre-defined quick message buttons for common queries
+- **Auto-scroll**: Smart scrolling with user control
+- **Responsive Design**: Works seamlessly across devices
 
-## Code scaffolding
+## 🛠️ Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Framework**: Angular 17 (Standalone Components)
+- **Styling**: Custom CSS
+- **Markdown**: Marked.js for rich text formatting
+- **HTTP Client**: Native Angular HTTP for API communication
 
-## Build
+## 📋 Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Node.js (v18 or higher)
+- npm or yarn
+- Angular CLI (`npm install -g @angular/cli`)
 
-## Running unit tests
+## 🚀 Quick Start
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd financial_advisory_chatbot
+   ```
 
-## Running end-to-end tests
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. **Configure environment**
+   - Update `src/environments/environment.ts` with your backend URL
+   ```typescript
+   export const environment = {
+     production: false,
+     BACKEND_URL: 'http://localhost:8000'
+   };
+   ```
 
-## Further help
+4. **Start development server**
+   ```bash
+   ng serve
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+5. **Open browser**
+   - **Live Demo**: [https://financialadvisorychatbot.vercel.app/](https://financialadvisorychatbot.vercel.app/)
+   - **Local Development**: Navigate to `http://localhost:4200`
+
+## 🏗️ Build
+
+```bash
+# Development build
+ng build
+
+# Production build
+ng build --prod
+```
+
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── chat/                 # Chat component
+│   │   ├── chat.component.ts
+│   │   ├── chat.component.html
+│   │   └── chat.component.css
+│   ├── app.component.ts      # Root component
+│   └── app.routes.ts         # Routing configuration
+├── environments/             # Environment configurations
+└── assets/                   # Static assets
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+- `BACKEND_URL`: Backend API endpoint (default: http://localhost:8000)
+
+### Key Components
+- **ChatComponent**: Main chat interface with message handling
+- **AppComponent**: Root component with navigation and layout
+
+## 🎯 Usage
+
+1. Start typing your financial question
+2. Press Enter or click Send
+3. Receive AI-powered financial advice
+4. Use quick action buttons for common queries
+5. Scroll through chat history with auto-scroll features
+
+## 📄 License
+
+This project is licensed under the MIT License.
