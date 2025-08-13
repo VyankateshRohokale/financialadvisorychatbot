@@ -24,6 +24,13 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   private autoScrollEnabled: boolean = true;
   private scrollToBottomTimeout: any;
 
+  // Dashboard properties
+  userMessageCount: number = 0;
+  botMessageCount: number = 0;
+  topicCounts: { [key: string]: number } = {};
+  lastTopic: string = '';
+  topicList: string[] = ['Personal Finance', 'Investments', 'Financial Planning', 'Financial Literacy', 'Market Trends'];
+
   backend_url = environment.BACKEND_URL || 'http://localhost:8000';
 
   constructor(
@@ -170,6 +177,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         sender: 'bot',
       });
 
+      // Update insights after each message
+      this.updateInsights(text);
+
       // Enable auto-scroll for bot response
       this.autoScrollEnabled = true;
       this.shouldScrollToBottom = true;
@@ -181,6 +191,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         sender: 'bot',
       });
       this.shouldScrollToBottom = true;
+      this.updateInsights();
     } finally {
       this.isLoading = false;
       
@@ -188,6 +199,35 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       setTimeout(() => {
         this.focusInput();
       }, 100);
+    }
+  }
+
+  private updateInsights(botText: string = ''): void {
+    // Update message counts
+    this.userMessageCount = this.messages.filter(m => m.sender === 'user').length;
+    this.botMessageCount = this.messages.filter(m => m.sender === 'bot').length;
+
+    // A simple way to detect a topic based on keywords in the bot's response
+    if (botText) {
+      const lowerCaseText = botText.toLowerCase();
+      if (lowerCaseText.includes('budget') || lowerCaseText.includes('saving') || lowerCaseText.includes('debt')) {
+        this.lastTopic = 'Personal Finance';
+      } else if (lowerCaseText.includes('stock') || lowerCaseText.includes('bond') || lowerCaseText.includes('ira') || lowerCaseText.includes('401k')) {
+        this.lastTopic = 'Investments';
+      } else if (lowerCaseText.includes('retirement') || lowerCaseText.includes('college')) {
+        this.lastTopic = 'Financial Planning';
+      } else if (lowerCaseText.includes('interest') || lowerCaseText.includes('apr') || lowerCaseText.includes('loan')) {
+        this.lastTopic = 'Financial Literacy';
+      } else if (lowerCaseText.includes('market') || lowerCaseText.includes('trend') || lowerCaseText.includes('economic')) {
+        this.lastTopic = 'Market Trends';
+      } else {
+        this.lastTopic = ''; // Reset if no topic detected
+      }
+      
+      // Increment the count for the detected topic
+      if (this.lastTopic) {
+        this.topicCounts[this.lastTopic] = (this.topicCounts[this.lastTopic] || 0) + 1;
+      }
     }
   }
 
@@ -210,6 +250,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.isInitialLoad = true;
     this.userInput = '';
     this.autoScrollEnabled = true;
+    this.userMessageCount = 0;
+    this.botMessageCount = 0;
+    this.topicCounts = {};
+    this.lastTopic = '';
     setTimeout(() => {
       this.focusInput();
     }, 100);
