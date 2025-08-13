@@ -1,1 +1,58 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <h1 class="dashboard-title">Conversation Dashboard</h1>
+
+  <!-- Show a message if there's no conversation yet -->
+  <div *ngIf="(totalMessages$ | async) === 0; else showStats" class="no-data-card">
+    <h2>No Conversation Data</h2>
+    <p>Start a conversation in the <a routerLink="/chatbot">Chatbot</a> tab to see your dashboard. Mention your income (e.g., "I earn $5000 a month") to see it appear here!</p>
+  </div>
+
+  <!-- Main stats container -->
+  <ng-template #showStats>
+    <!-- NEW: Financial Overview Section -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3 class="card-title">Monthly Income</h3>
+        <p class="card-value">{{ (totalIncome$ | async) | currency:'USD':'symbol':'1.2-2' }}</p>
+        <div class="card-icon">💰</div>
+      </div>
+      <div class="stat-card">
+        <h3 class="card-title">Net Worth</h3>
+        <p class="card-value">{{ (netWorth$ | async) | currency:'USD':'symbol':'1.2-2' }}</p>
+        <div class="card-icon">🏦</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Conversation Stats Section -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3 class="card-title">Total Messages</h3>
+        <p class="card-value">{{ totalMessages$ | async }}</p>
+        <div class="card-icon">💬</div>
+      </div>
+      <div class="stat-card">
+        <h3 class="card-title">Your Messages</h3>
+        <p class="card-value">{{ userMessageCount$ | async }}</p>
+        <div class="card-icon">👤</div>
+      </div>
+      <div class="stat-card">
+        <h3 class="card-title">Bot Responses</h3>
+        <p class="card-value">{{ botMessageCount$ | async }}</p>
+        <div class="card-icon">🤖</div>
+      </div>
+    </div>
+
+    <!-- Topic Breakdown Card -->
+    <div class="topic-card">
+      <h2 class="topic-card-title">Topic Breakdown</h2>
+      <div class="topic-list" *ngIf="topicCounts$ | async as counts">
+        <div *ngFor="let topic of topicList" class="topic-item" [class.active]="counts[topic] > 0">
+          <span class="topic-name">{{ topic }}</span>
+          <span class="topic-count">{{ counts[topic] }}</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

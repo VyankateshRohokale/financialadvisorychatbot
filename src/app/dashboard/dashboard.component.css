@@ -1,0 +1,142 @@
+.dashboard-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  color: #ececf1;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  color: #fff;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #444;
+  margin: 2.5rem 0;
+}
+
+.no-data-card {
+  background-color: #2f2f2f;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid #444;
+}
+
+.no-data-card h2 {
+  margin-top: 0;
+  color: #fff;
+}
+
+.no-data-card a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.no-data-card a:hover {
+  text-decoration: underline;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background-color: #2f2f2f;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid #444;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  color: #aaa;
+  margin: 0 0 0.5rem 0;
+}
+
+.card-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 1rem 0;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+}
+
+.topic-card {
+  background-color: #2f2f2f;
+  border-radius: 8px;
+  padding: 2rem;
+  border: 1px solid #444;
+}
+
+.topic-card-title {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.topic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.topic-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: #252525;
+  border-radius: 6px;
+  color: #888;
+  transition: all 0.2s ease;
+}
+
+.topic-item.active {
+  color: #ececf1;
+  background-color: #383838;
+}
+
+.topic-item.active .topic-name {
+  font-weight: 600;
+}
+
+.topic-item.active .topic-count {
+  background-color: #667eea;
+  color: #fff;
+}
+
+.topic-name {
+  font-size: 1rem;
+}
+
+.topic-count {
+  font-size: 0.9rem;
+  font-weight: 700;
+  background-color: #444;
+  color: #aaa;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  min-width: 24px;
+  text-align: center;
+}

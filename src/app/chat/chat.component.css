@@ -139,9 +139,12 @@ h2 {
   color: #d1d5db;
 }
 
+/* This rule is no longer needed and has been removed */
+/*
 .quick-responses button:nth-child(4) {
   margin-top: 0.5rem;
 }
+*/
 
 .terms-text {
   text-align: center;

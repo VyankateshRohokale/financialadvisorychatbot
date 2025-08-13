@@ -1,1 +1,24 @@
-<p>insights works!</p>
+<div class="insights-container">
+  <h1 class="insights-title">AI-Powered Insights</h1>
+  <p class="insights-subtitle">Get a high-level summary and actionable insights from your conversation.</p>
+
+  <!-- Case 1: There is a conversation -->
+  <div *ngIf="hasConversation; else noConversation">
+    <div class="button-container">
+      <button class="generate-btn" (click)="generateInsights()" [disabled]="isLoading">
+        <span *ngIf="!isLoading">✨ Generate My Insights</span>
+        <span *ngIf="isLoading" class="loading-spinner"></span>
+      </button>
+    </div>
+
+    <div *ngIf="insightsHtml" class="insights-result-card" [innerHTML]="insightsHtml"></div>
+  </div>
+
+  <!-- Case 2: No conversation yet -->
+  <ng-template #noConversation>
+    <div class="no-data-card">
+      <h2>No Conversation Data</h2>
+      <p>Start a conversation in the <a routerLink="/chatbot">Chatbot</a> tab to generate insights.</p>
+    </div>
+  </ng-template>
+</div>

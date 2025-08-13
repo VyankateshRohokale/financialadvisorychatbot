@@ -1,20 +1,7 @@
+<!-- The old dashboard div that was here has been removed -->
 <div class="chat-wrapper">
-  <div class="dashboard" *ngIf="messages.length > 0 && !isInitialLoad">
-  <h3>Conversation Insights</h3>
-  <div class="dashboard-stats">
-    <div>Total Messages: {{ messages.length }}</div>
-    <div>User: {{ userMessageCount }}</div>
-    <div>Bot: {{ botMessageCount }}</div>
-    <div *ngIf="lastTopic">Last Topic: {{ lastTopic }}</div>
-  </div>
-  <div class="dashboard-topics">
-    <span *ngFor="let topic of topicList">
-      <span [class.active]="topicCounts[topic] > 0">{{ topic }} ({{ topicCounts[topic] || 0 }})</span>
-    </span>
-  </div>
-</div>
-  <h2>Financial Insights</h2>
   <div class="chat-window">
+    <!-- Initial Screen (Welcome View) -->
     <div class="initial-screen-wrapper" [class.hidden]="!isInitialLoad">
       <div class="chat-title">
         <h1>Clau AI</h1>
@@ -26,76 +13,47 @@
             [(ngModel)]="userInput"
             (keydown)="onInputKeydown($event)"
             placeholder="Need Financial Assistance?"
-            [disabled]="isLoading"
-            #initialInput
+            [disabled]="(isLoading$ | async) ?? false"
           />
           <button
             class="send-button"
             (click)="sendMessage()"
-            [disabled]="isLoading || userInput.trim() === ''"
+            [disabled]="((isLoading$ | async) ?? false) || userInput.trim() === ''"
           >
             <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2L22 12L12 22L10.59 20.59L18.17 13H2V11H18.17L10.59 3.41L12 2Z"
-              />
+              <path d="M12 2L22 12L12 22L10.59 20.59L18.17 13H2V11H18.17L10.59 3.41L12 2Z"/>
             </svg>
           </button>
         </div>
       </div>
       <div class="quick-responses">
-        <button (click)="sendQuickMessage('What is APR')">What is APR</button>
-        <button (click)="sendQuickMessage('Explain Compound interest')">
-          Explain Compound interest
-        </button>
-        <button
-          (click)="sendQuickMessage('How can I save more money each month?')"
-        >
-          How can I save more money each month?
-        </button>
-        <div style="flex-basis: 100%; height: 0"></div>
-        <button (click)="sendQuickMessage('Budget plan for a college student')">
-          Budget plan for a college student
-        </button>
+        <button (click)="sendQuickMessage('What is APR?')">What is APR?</button>
+        <button (click)="sendQuickMessage('Explain Compound interest')">Explain Compound interest</button>
+        <button (click)="sendQuickMessage('How can I save more money?')">How can I save more money?</button>
+        <!-- The div that was here has been removed to allow natural wrapping -->
+        <button (click)="sendQuickMessage('Budget plan for a college student')">Budget plan for a college student</button>
       </div>
       <div class="terms-text">
-        <p>
-          By using Clau AI, you agree to our Terms of Service and acknowledge
-          our Privacy Policy.
-        </p>
+        <p>By using Clau AI, you agree to our Terms of Service and acknowledge our Privacy Policy.</p>
       </div>
     </div>
 
-    <div 
-      class="messages" 
-      [class.show]="!isInitialLoad"
-      (scroll)="onMessagesScroll()"
-      #messagesContainer
-    >
-      <div
-        *ngFor="let message of messages; let i = index"
-        [ngClass]="{
-          'user-message': message.sender === 'user',
-          'bot-message': message.sender === 'bot'
-        }"
-        [attr.data-message-index]="i"
-      >
+    <!-- Main Chat Messages Area -->
+    <div class="messages" [class.show]="!isInitialLoad" #messagesContainer>
+      <div *ngFor="let message of messages" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
         <div class="message-bubble">
           <span *ngIf="message.sender === 'user'">{{ message.text }}</span>
-          <div
-            *ngIf="message.sender === 'bot'"
-            [innerHTML]="message.html"
-          ></div>
+          <div *ngIf="message.sender === 'bot'" [innerHTML]="message.html"></div>
         </div>
       </div>
       
-      <div *ngIf="isLoading" class="loading-container">
-        <span class="thinking-text"
-          >Working<span class="dot">.</span><span class="dot">.</span
-          ><span class="dot">.</span></span
-        >
+      <!-- Loading Indicator -->
+      <div *ngIf="isLoading$ | async" class="loading-container">
+        <span class="thinking-text">Working<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span>
       </div>
     </div>
 
+    <!-- Bottom Input Area -->
     <div class="input-area" [class.show]="!isInitialLoad">
       <div>
         <input
@@ -103,18 +61,15 @@
           [(ngModel)]="userInput"
           (keydown)="onInputKeydown($event)"
           placeholder="Need Financial Assistance?"
-          [disabled]="isLoading"
-          #messageInput
+          [disabled]="(isLoading$ | async) ?? false"
         />
         <button
           class="send-button"
           (click)="sendMessage()"
-          [disabled]="isLoading || userInput.trim() === ''"
+          [disabled]="((isLoading$ | async) ?? false) || userInput.trim() === ''"
         >
           <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 2L22 12L12 22L10.59 20.59L18.17 13H2V11H18.17L10.59 3.41L12 2Z"
-            />
+            <path d="M12 2L22 12L12 22L10.59 20.59L18.17 13H2V11H18.17L10.59 3.41L12 2Z"/>
           </svg>
         </button>
       </div>
