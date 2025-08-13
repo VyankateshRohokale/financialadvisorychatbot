@@ -1,11 +1,14 @@
 # Clau - Financial Advisory Chatbot
 
-A modern, AI-powered financial advisory chatbot built with Angular 17 that provides personalized financial guidance and advice.
+A comprehensive, AI-powered financial advisory platform built with Angular 17 that provides personalized financial guidance, analytics, and insights.
 
 ## 🚀 Features
 
-- **AI-Powered Advice**: Integrated with Google Gemini 2.5 Flash API for intelligent financial guidance
-- **Real-time Chat**: Smooth, responsive chat interface with rich markdown support
+- **AI-Powered Chat**: Integrated with Google Gemini 2.5 Flash API for intelligent financial guidance
+- **Financial Dashboard**: Real-time analytics tracking income, net worth, and conversation metrics
+- **AI Insights**: Generate comprehensive financial insights from conversation history
+- **Multi-Page Navigation**: Chat, Dashboard, and Insights sections with seamless routing
+- **State Management**: Persistent chat state and financial data across sessions
 - **Professional Persona**: "Clau" - your dedicated financial advisor
 - **Rich Formatting**: Tables, headers, bullet points, and visual cards for better readability
 - **Quick Actions**: Pre-defined quick message buttons for common queries
@@ -15,7 +18,10 @@ A modern, AI-powered financial advisory chatbot built with Angular 17 that provi
 ## 🛠️ Tech Stack
 
 - **Framework**: Angular 17 (Standalone Components)
-- **Styling**: Custom CSS
+- **State Management**: Custom ChatStateService with RxJS
+- **Routing**: Angular Router for multi-page navigation
+- **AI Integration**: Google Generative AI SDK
+- **Styling**: Custom CSS with responsive design
 - **Markdown**: Marked.js for rich text formatting
 - **HTTP Client**: Native Angular HTTP for API communication
 
@@ -72,14 +78,17 @@ ng build --prod
 ```
 src/
 ├── app/
-│   ├── chat/                 # Chat component
-│   │   ├── chat.component.ts
-│   │   ├── chat.component.html
-│   │   └── chat.component.css
-│   ├── app.component.ts      # Root component
-│   └── app.routes.ts         # Routing configuration
+│   ├── chat/                 # Chat interface component
+│   ├── dashboard/            # Financial analytics dashboard
+│   ├── insights/             # AI-generated insights page
+│   ├── services/             # State management services
+│   │   └── chat-state.service.ts
+│   ├── sidebar/              # Navigation sidebar
+│   ├── app.component.ts      # Root component with navigation
+│   ├── app.routes.ts         # Multi-page routing configuration
+│   └── app.config.ts         # Application configuration
 ├── environments/             # Environment configurations
-└── assets/                   # Static assets
+└── assets/                   # Static assets and logos
 ```
 
 ## 🔧 Configuration
@@ -88,16 +97,32 @@ src/
 - `BACKEND_URL`: Backend API endpoint (default: http://localhost:8000)
 
 ### Key Components
-- **ChatComponent**: Main chat interface with message handling
-- **AppComponent**: Root component with navigation and layout
+- **ChatComponent**: Main chat interface with AI communication
+- **DashboardComponent**: Financial analytics and metrics display
+- **InsightsComponent**: AI-generated financial insights
+- **ChatStateService**: Centralized state management for messages and data
+- **AppComponent**: Root component with navigation header and routing
 
 ## 🎯 Usage
 
-1. Start typing your financial question
-2. Press Enter or click Send
-3. Receive AI-powered financial advice
-4. Use quick action buttons for common queries
-5. Scroll through chat history with auto-scroll features
+### Chat Interface
+1. Navigate to the Chat section
+2. Start typing your financial question
+3. Press Enter or click Send
+4. Receive AI-powered financial advice
+5. Use quick action buttons for common queries
+
+### Dashboard Analytics
+1. Visit the Dashboard to view financial metrics
+2. Track conversation statistics and topic analysis
+3. Monitor extracted financial data (income, net worth)
+4. View message counts and engagement metrics
+
+### AI Insights
+1. Navigate to Insights after having conversations
+2. Generate comprehensive financial analysis
+3. Review personalized recommendations
+4. Export insights for future reference
 
 ## 🧪 Testing
 
