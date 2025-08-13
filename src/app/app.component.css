@@ -14,7 +14,7 @@
 
 .app-header {
   display: flex;
-  justify-content: space-between; /* This will space out the items */
+  justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
   background-color: #212121;
@@ -31,7 +31,6 @@
 .logo-container {
   display: flex;
   align-items: center;
-  /* Take up space based on its content */
   flex: 1 0 0; 
 }
 
@@ -87,9 +86,9 @@
 /* Center: Navigation Links */
 .nav-links {
   display: flex;
-  justify-content: center; /* Center the links within their container */
+  justify-content: center;
   gap: 2rem;
-  flex: 2; /* Allow it to take up more space */
+  flex: 2;
 }
 
 .nav-links a {
@@ -101,6 +100,7 @@
   cursor: pointer;
   transition: color 0.3s ease;
   border-bottom: 2px solid transparent;
+  white-space: nowrap; /* Prevent link text from wrapping */
 }
 
 .nav-links a:hover {
@@ -112,11 +112,11 @@
   border-bottom-color: #ffffff;
 }
 
-/* Right Side: Contact Button Styles to Add Back */
+/* Right Side: Contact Button */
 .contact-btn-container {
   display: flex;
-  justify-content: flex-end; /* Align button to the right */
-  flex: 1 0 0; /* Match the logo container's flex property for balance */
+  justify-content: flex-end;
+  flex: 1 0 0;
 }
 
 .contact-btn {
@@ -139,25 +139,29 @@
 }
 
 
-/* Responsive Styles */
+/* Responsive Styles for Mobile */
 @media (max-width: 768px) {
   .app-header {
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
     padding: 1rem;
+    row-gap: 1rem; /* Add space between rows when they wrap */
   }
-  .logo {
-    font-size: 1rem;
+
+  .logo-container {
+    flex-basis: 50%; /* Take up half the width */
   }
-  /* Hide the nav links and contact button on small screens if needed, or adjust */
+
+  .contact-btn-container {
+    flex-basis: 50%; /* Take up the other half */
+  }
+
   .nav-links {
-    flex: 3;
-    gap: 1rem;
-    justify-content: center;
+    order: 3; /* Make the nav links appear on the second row */
+    flex-basis: 100%; /* Take up the full width on the second row */
+    gap: 1.5rem;
   }
+  
   .nav-links a {
     font-size: 0.9rem;
-  }
-  .contact-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
   }
 }
