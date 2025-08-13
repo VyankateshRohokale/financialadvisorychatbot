@@ -9,11 +9,18 @@
       </div>
     </div>
   </div>
+
+  <div class="nav-links">
+    <a routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a>
+    <a routerLink="/chatbot" routerLinkActive="active-link">Chatbot</a>
+    <a routerLink="/insights" routerLinkActive="active-link">Insights</a>
+  </div>
+
   <div class="contact-btn-container">
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Business@vivytech.com" target="_blank" class="contact-btn">Contact us</a>
   </div>
 </header>
 
 <main class="main-content">
-  <app-chat></app-chat>
+  <router-outlet></router-outlet>
 </main>

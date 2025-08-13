@@ -1,29 +1,31 @@
-import { Component, HostListener } from '@angular/core';
+// src/app/app.component.ts
+
+import { Component, HostListener } from '@angular/core'; // Add HostListener
 import { CommonModule } from '@angular/common';
-import { ChatComponent } from './chat/chat.component';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, ChatComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'CLAU';
-  isDropdownOpen = false;
+  isDropdownOpen = false; // Add this back
 
+  // Add this method back to toggle the dropdown
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  // This method is no longer needed as the contact button is a direct link
-  sendQuickMessage(message: string) {}
-
+  // Add this HostListener back to close the dropdown when clicking outside
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
     const target = event.target as HTMLElement;
-    if (!target.closest('.dropdown')) {
+    // Check if the click is outside the .logo-container
+    if (!target.closest('.logo-container')) {
       this.isDropdownOpen = false;
     }
   }
